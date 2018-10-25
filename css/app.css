@@ -1,0 +1,13 @@
+body{
+    margin:30px;
+}
+
+#category,
+table tr>*{
+  text-transform:capitalize;
+}
+
+p.alert.alert-success,
+h2{
+    margin-left:-15px;
+}

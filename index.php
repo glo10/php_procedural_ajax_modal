@@ -35,8 +35,7 @@
                     <th></th>
                     <th></th>
                 </thead>
-                <tbody>
-                </tbody>
+                <tbody></tbody>
             </table>
         </div>
         <!-- Modal -->
@@ -78,61 +77,9 @@
             </div>
         </div>
     </main>
-    <script src="jquery/jquery.js"></script>
+    <script src="js/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script>
-        (function(){
-            $(document).ready(function(){
-
-              getProduct();
-                /**
-                *@desc remove user message after 2sec
-                *@param afterEl string html element
-                *@param msg string message
-                */
-                function removeAlert(afterEl,msg){
-                  $(afterEl).after('<p class="alert alert-success">'+ msg +'</p>');
-                  setTimeout(function(){
-                    $(afterEl).next().remove();
-                  },2000);
-                }
-
-                //Get all products
-               function getProduct(){
-                 $.get('liste.php',
-                  function(data){
-                      $('tbody').html(data);
-                  });
-               }
-                //Add new product
-                $('input[type=submit]').on('click',function(e){
-                    $.post('ajout.php',
-                    {
-                    name :     $('#name').val(),
-                    price:     $('#price').val(),
-                    category:  $('#category').val()
-                    },
-                    function(data){
-                      console.log(data);
-                        $('#modal').modal('toggle');
-                        removeAlert('h2','Un nouveau plat a été ajouté!');
-                        getProduct();
-                    });
-                });
-
-                //Erase product
-                $('td>a').on('click',function(e){
-                    $.get('supprimer.php',
-                    {
-                    id : $(this).attr('data-id')
-                    },
-                    function(data){
-                        removeAlert('h2','Un plat a été supprimé!');
-                    });
-                });
-            });
-        })();
-    </script>
+    <script src="js/app.js"></script>
 </body>
 </html>

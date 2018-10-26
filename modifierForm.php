@@ -10,17 +10,25 @@
     }
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/app.css">
     <title>Modifier plat</title>
 </head>
 <body>
     <main class="container">
+        <div class="row">
+          <nav>
+            <a class="btn btn-primary" href="index.php">
+              <span class="glyphicon glyphicon-home"></span>
+            </a>
+          </nav>
+        </div>
         <h2>Modifier le plat</h2>
         <form action="modifier.php" method="POST" class="form-horizontal">
             <div class="form-group">

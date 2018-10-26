@@ -1,5 +1,4 @@
 <?php
-    print_r($_POST);
     if(
         isset($_POST['id'])         &&
         !empty($_POST['id'])        &&
@@ -18,10 +17,10 @@
         $price = $_POST['price'];
         $category = $_POST['category'];
 
-        $update = $pdo->prepare('   UPDATE  plat 
-                                    SET     nom = :nom, 
-                                            prix = :prix, 
-                                            categorie = :categorie 
+        $update = $pdo->prepare('   UPDATE  plat
+                                    SET     nom = :nom,
+                                            prix = :prix,
+                                            categorie = :categorie
                                     WHERE   id = :id'
                                 );
 
@@ -31,8 +30,8 @@
         $update->bindParam(':categorie',$category);
 
         $update->execute();
-        header('location:list.php');
+        header('location:index.php?success=1');
     }
     else{
-        echo 'itiidojd';
+        echo 'Erreur';
     }

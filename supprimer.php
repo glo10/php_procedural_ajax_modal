@@ -5,11 +5,11 @@
     ){
         require_once 'connexion.php';
         $id = htmlspecialchars($_GET['id']);
-        $delete = $pdo->prepare('DELETE FROM eleve WHERE id = :id');
+        $delete = $pdo->prepare('DELETE FROM plat WHERE id = :id');
         $delete->bindParam(':id',$id);
         $delete->execute();
-        echo 'succes';
+        header('location:index.php');
     }
     else{
-        echo 'probleme';
+        echo 'Erreur de connexion';
     }

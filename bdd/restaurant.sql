@@ -68,7 +68,7 @@ CREATE TABLE `commande` (
   `num_commande` varchar(255) NOT NULL,
   `plat_id` int(11) NOT NULL,
   `quantite` int(11) NOT NULL,
-  `prix` decimal(4,2) NOT NULL,
+  `prix` decimal(5,2) NOT NULL,
   `client` int(11) NOT NULL,
   `date_commande` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -82,7 +82,7 @@ CREATE TABLE `commande` (
 CREATE TABLE `plat` (
   `id` int(11) NOT NULL,
   `nom` varchar(11) NOT NULL,
-  `prix` decimal(3,2) NOT NULL,
+  `prix` decimal(5,2) NOT NULL,
   `categorie` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

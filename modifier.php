@@ -9,7 +9,7 @@
         isset($_POST['category'])   &&
         !empty($_POST['category'])
     ){
-        array_map($_POST,htmlspecialchars);
+        array_map('htmlspecialchars',$_POST);
         require_once 'connexion.php';
 
         $id = $_POST['id'];
@@ -30,8 +30,7 @@
         $update->bindParam(':categorie',$category);
 
         $update->execute();
-        header('location:index.php?success=1');
     }
     else{
-        echo 'Erreur';
+        echo 'Erreur de modification d\'un produit';
     }

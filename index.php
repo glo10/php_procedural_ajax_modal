@@ -20,8 +20,8 @@
             </form>
             -->
             <div>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
-                  Ajouter plat&nbsp;<span class="glyphicon glyphicon-plus"></span>
+                <button id="add" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
+                  Ajouter un plat&nbsp;<span class="glyphicon glyphicon-plus"></span>
                 </button>
             </div>
         </div>
@@ -50,6 +50,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
+                        <input type="hidden" name="id" value="-1">
                         <input type="text" name="name" id="name" placeholder="Saisir le nom du plat">
                     </div>
                     <div class="form-group">
@@ -61,8 +62,9 @@
                                 require_once 'connexion.php';
                                 $options = $pdo->prepare('SELECT id,nom FROM categorie');
                                 $options->execute();
-                                while($option = $options->fetch()){
-                                    echo '<option value="'.$option["id"].'">'.$option["nom"].'</option>';
+                                while($option = $options->fetch()){?>
+                                    <option value="<?=$option['id']?>"><?=$option["nom"]?></option>
+                                <?php
                                 }
                             ?>
                         </select>

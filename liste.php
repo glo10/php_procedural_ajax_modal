@@ -12,5 +12,5 @@
     echo $data;
    }
    else{
-     echo "Aucune information a été recupéré!";
+     echo "Aucune information a été recupérée!";
    }

@@ -13,7 +13,9 @@
           },3000);
         }
 
-        //Get all products
+        /**
+         * @desc get all products via ajax
+         */
        function getProduct(){
         $('tbody').empty();
          $.get('liste.php',
@@ -32,31 +34,78 @@
                                         </button>
                                     </td>
                                     <td>
-                                        <a class="btn btn-warning" href="modifierForm.php?id=${item.id}">
+                                        <button data-toggle="modal" data-target="#modal" class="update btn btn-info" data-id="${item.id}" data-name="${item.nom}" data-price="${item.prix}" data-category="${item.categorie}">
                                             <span class="glyphicon glyphicon-pencil"></span>
-                                        </a>
+                                        </button>
                                     </td>
                                 </tr>`
                             );
               });
-              
+
           });
        }
-        //Add new product
+        //Add new product && update product by using bootstrap modal
         $('input[type=submit]').on('click',function(e){
-            $.post('ajout.php',
-            {
-            name :     $('#name').val(),
-            price:     $('#price').val(),
-            category:  $('#category').val()
-            },
-            function(data){
-              console.log(data);
-                $('#modal').modal('toggle');
-                removeAlert('h2','Un nouveau plat a été ajouté!');
-                getProduct();
-            });
+
+            if($(this).val() == 'Valider'){
+                //Add product
+                $.post('ajout.php',
+                {
+                name :     $('#name').val(),
+                price:     $('#price').val(),
+                category:  $('#category').val()
+                },
+                function(data){
+                    $('#modal').modal('toggle');
+                    removeAlert('h2','Un nouveau plat a été ajouté!');
+                    getProduct();
+                });
+            }
+
+            else if($(this).val() == 'Modifier'){
+                //Update product
+                var id = $('input[type=hidden]').val();
+                var name = $('#name').val();
+                var price = $('#price').val();
+                var category = $('#category').val();
+
+                $.post('modifier.php',
+                {
+                id :       id,
+                name :     name,
+                price:     price,
+                category:  category
+                },
+                function(data){
+                    $('#modal').modal('toggle');
+                    removeAlert('h2','Le plat a été modifié"!');
+                    getProduct();
+                });
+            }
         });
+
+        //reset modal form values in order to add new product
+        $('body').on('click','#add',function(e){
+
+            $('#name').val('');
+            $('#price').val('');
+            $('#category').val('');
+
+            $('#modalLabel').text('Ajouter un plat');
+            $('.modal-footer input[type=submit]').val('Valider');
+        });
+
+        //add values on form modal in order to update an existing product
+        $('body').on('click','.update',function(e){
+            $('input[type=hidden]').attr('value',$(this).attr('data-id'));
+            $('#name').val($(this).attr('data-name'));
+            $('#price').val($(this).attr('data-price'));
+            $('#category').val($(this).attr('data-category'));
+
+            $('#modalLabel').text('Modifier le plat');
+            $('.modal-footer input[type=submit]').val('Modifier');
+        });
+
         //Erase product
         $('body').on('click','.delete',function(e){
             $.post('supprimer.php',
